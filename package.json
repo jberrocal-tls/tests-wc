@@ -8,7 +8,7 @@
     "apps/*"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace=apps/nextjs-wc",
+    "dev": "npm run copy:components && npm run dev --workspace=apps/nextjs-wc",
     "dev:lit": "npm run dev --workspace=packages/wc-lit",
     "dev:stencil": "npm run start --workspace=packages/wc-stencil",
     "build": "npm run build --workspaces --if-present",
@@ -16,10 +16,20 @@
     "build:lit": "npm run build --workspace=packages/wc-lit",
     "build:stencil": "npm run build --workspace=packages/wc-stencil",
     "build:next": "npm run build --workspace=apps/nextjs-wc",
-    "build:all": "npm run build:packages && npm run build:next",
+    "build:all": "npm run build:packages && npm run copy:components && npm run build:next",
+    "copy:components": "npm run copy:lit && npm run copy:stencil",
+    "copy:lit": "cp packages/wc-lit/counter-component.js apps/nextjs-wc/public/components/ && cp packages/wc-lit/user-card.js apps/nextjs-wc/public/components/",
+    "copy:stencil": "cp -r packages/wc-stencil/dist apps/nextjs-wc/public/components/ && cp -r packages/wc-stencil/loader apps/nextjs-wc/public/components/",
+    "copy:deps": "npm run copy:lit-deps",
+    "copy:lit-deps": "cp -r node_modules/lit apps/nextjs-wc/public/components/ && cp -r node_modules/@lit apps/nextjs-wc/public/components/ && cp -r node_modules/lit-html apps/nextjs-wc/public/components/ && cp -r node_modules/lit-element apps/nextjs-wc/public/components/",
+    "prebuild": "npm run build:packages && npm run copy:components",
+    "postinstall": "npm run copy:deps",
     "clean": "npm run clean --workspaces --if-present && rm -rf node_modules",
     "clean:packages": "npm run clean --workspace=packages/wc-lit && npm run clean --workspace=packages/wc-stencil",
-    "setup": "npm install && npm run build:packages"
+    "clean:next": "rm -rf apps/nextjs-wc/.next apps/nextjs-wc/out",
+    "clean:components": "rm -rf apps/nextjs-wc/public/components/*",
+    "setup": "npm install && npm run build:packages && npm run copy:components",
+    "test:dev": "npm run build:packages && npm run copy:components && npm run dev"
   },
   "keywords": [
     "web-components",
