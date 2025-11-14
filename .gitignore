@@ -1,0 +1,53 @@
+# Dependencies
+**/node_modules/
+node_modules/
+**/package-lock.json
+package-lock.json
+
+# Build outputs
+**/dist/
+dist/
+**/.next/
+.next/
+**/out/
+out/
+**/www/
+www/
+**/.stencil/
+.stencil/
+**/loader/
+loader/
+build/
+**/build/
+
+# Environment variables
+.env
+.env.local
+.env.production.local
+.env.development.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+.cache/
+temp/
+tmp/

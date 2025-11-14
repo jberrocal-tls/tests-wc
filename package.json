@@ -1,0 +1,34 @@
+{
+  "name": "wc-stress-component",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo for Web Components stress testing with Lit and Stencil",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/nextjs-wc",
+    "dev:lit": "npm run dev --workspace=packages/wc-lit",
+    "dev:stencil": "npm run start --workspace=packages/wc-stencil",
+    "build": "npm run build --workspaces --if-present",
+    "build:packages": "npm run build:lit && npm run build:stencil",
+    "build:lit": "npm run build --workspace=packages/wc-lit",
+    "build:stencil": "npm run build --workspace=packages/wc-stencil",
+    "build:next": "npm run build --workspace=apps/nextjs-wc",
+    "build:all": "npm run build:packages && npm run build:next",
+    "clean": "npm run clean --workspaces --if-present && rm -rf node_modules",
+    "clean:packages": "npm run clean --workspace=packages/wc-lit && npm run clean --workspace=packages/wc-stencil",
+    "setup": "npm install && npm run build:packages"
+  },
+  "keywords": [
+    "web-components",
+    "lit",
+    "stencil",
+    "nextjs",
+    "monorepo"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {}
+}

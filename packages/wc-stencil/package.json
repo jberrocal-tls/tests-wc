@@ -1,0 +1,23 @@
+{
+  "name": "wc-stencil",
+  "version": "1.0.0",
+  "description": "Stencil Counter Component",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec",
+    "clean": "rm -rf dist www .stencil loader node_modules"
+  },
+  "devDependencies": {
+    "@stencil/core": "^4.22.3"
+  },
+  "license": "MIT"
+}
